@@ -151,7 +151,8 @@ export function initStory({ urls, reduced }) {
     const pizzaCenterY = () => pizzas[0].offsetTop + pizzas[0].offsetHeight / 2;
     const ovenTarget = () => {
       const A = archRect();
-      return { y: A.top + A.h * 0.8 - pizzaCenterY(), scale: (A.w * 0.47) / size() };
+      const m = isMobile();
+      return { y: A.top + A.h * (m ? 0.72 : 0.8) - pizzaCenterY(), scale: (A.w * (m ? 0.4 : 0.47)) / size() };
     };
 
     // k: apertura dell'arco (0→1) · e: espansione a tutto schermo (0→1)
