@@ -25,7 +25,8 @@
   /* Dimensioni scene */
   --pz: min(38vw, 64vh);
   --bx: min(36vw, 56vh);
-  --vh: 100svh;
+  /* lvh = schermo "grande": su iPhone la sezione resta a tutto schermo anche quando le barre di Safari si riducono */
+  --vh: 100lvh;
 }
 
 @media (max-width: 768px) {

@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { setChrome } from '../chrome.js';
 
 /*
  * Scena 2 (sezione bloccata): la pizza cade nella scatola, il coperchio si chiude,
@@ -9,6 +10,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 const INK = '#1a1411';
 const CREAM = '#efe8dc';
 const KRAFT_INK = '#6b4a2e';
+const NIGHT = '#120c09';
 
 /* Dove sta davvero la scatola dentro l'immagine (esclude il margine trasparente), in frazioni 0–1 */
 function opaqueBounds(img) {
@@ -78,7 +80,7 @@ export function initBoxStage({ reduced }) {
     /* Stessa texture, stessa scala e stessa posizione su coperchio e card: il passaggio non si vede */
     const syncTexture = () => {
       const W = window.innerWidth;
-      const H = window.innerHeight;
+      const H = stage.clientHeight;
       const iw = texture.naturalWidth || 16;
       const ih = texture.naturalHeight || 9;
       const s = Math.max(W / iw, H / ih);
@@ -99,7 +101,7 @@ export function initBoxStage({ reduced }) {
       stamp.style.top = `${(r.top + r.bottom) / 2}px`;
       stamp.style.opacity = String(Math.max(0, 1 - shape.e * 3));
       const W = window.innerWidth;
-      const H = window.innerHeight;
+      const H = stage.clientHeight;
       const side = Math.max(10, W * 0.012);
       const top = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) + 4;
       const mix = (a, b) => a + (b - a) * shape.e;
@@ -154,8 +156,14 @@ export function initBoxStage({ reduced }) {
     ScrollTrigger.create({
       trigger: stage,
       start: 'top 40px',
-      onEnter: () => gsap.to(nav, { color: INK, duration: 0.3, overwrite: 'auto' }),
-      onLeaveBack: () => gsap.to(nav, { color: CREAM, duration: 0.3, overwrite: 'auto' }),
+      onEnter: () => {
+        gsap.to(nav, { color: INK, duration: 0.3, overwrite: 'auto' });
+        setChrome(CREAM);
+      },
+      onLeaveBack: () => {
+        gsap.to(nav, { color: CREAM, duration: 0.3, overwrite: 'auto' });
+        setChrome(NIGHT);
+      },
     });
 
     return tl;

@@ -1,6 +1,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { splitWord, fitWord } from '../text.js';
+import { setChrome } from '../chrome.js';
 
 /*
  * Scena 1 (sezione bloccata), come nel video di riferimento:
@@ -16,7 +17,8 @@ const WEDGES = 8;
 const COLORS = { cream: '#efe8dc', brown: '#5a2e14', night: '#120c09' };
 
 const vw = () => window.innerWidth;
-const vh = () => window.innerHeight;
+// Altezza reale della sezione (100lvh): la stessa misura usata dal CSS, anche su iPhone
+const vh = () => document.querySelector('.story')?.clientHeight || window.innerHeight;
 const isMobile = () => vw() <= 768;
 
 /* Pose della prima pizza, relative alla posizione base (quella del menu) */
@@ -271,8 +273,10 @@ export function initStory({ urls, reduced }) {
     exitPizza(pizzas[4], tO);
     morph(5, null, tO);
     hideCard(4, tO);
-    tl.to(bg, { backgroundColor: COLORS.brown, duration: 0.6, ease: 'none' }, tO + 0.2)
-      .to(bg, { backgroundColor: COLORS.night, duration: 0.7, ease: 'none' }, tO + 0.8)
+    // la barra del browser (zona dell'ora su iPhone) cambia colore insieme allo sfondo
+    const syncChrome = () => setChrome(bg.style.backgroundColor);
+    tl.to(bg, { backgroundColor: COLORS.brown, duration: 0.6, ease: 'none', onUpdate: syncChrome }, tO + 0.2)
+      .to(bg, { backgroundColor: COLORS.night, duration: 0.7, ease: 'none', onUpdate: syncChrome }, tO + 0.8)
       .to(nav, { color: COLORS.cream, duration: 0.4 }, tO + 0.6)
       .to(oven, { autoAlpha: 1, duration: 0.6 }, tO + 0.4)
       .to(arch, { k: 1, duration: 0.9, ease: 'power3.out', onUpdate: drawOven }, tO + 0.4);
