@@ -1,6 +1,6 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { setChrome } from '../chrome.js';
+import { setChrome, setChromeBottom } from '../chrome.js';
 
 /*
  * Scena 2 (sezione bloccata): la pizza cade nella scatola, il coperchio si chiude,
@@ -95,7 +95,31 @@ export function initBoxStage({ reduced }) {
     texture.decode?.().then(syncTexture).catch(() => {});
     syncTexture();
 
+    /* Colore medio della texture: serve a tingere la barra in basso di Safari quando la card arriva al bordo */
+    let kraftTint = '#c99a68';
+    const measureKraft = () => {
+      const c = document.createElement('canvas');
+      c.width = 24;
+      c.height = 24;
+      const ctx = c.getContext('2d', { willReadFrequently: true });
+      ctx.drawImage(texture, 0, 0, 24, 24);
+      const d = ctx.getImageData(0, 0, 24, 24).data;
+      let [r, g, b] = [0, 0, 0];
+      for (let i = 0; i < d.length; i += 4) [r, g, b] = [r + d[i], g + d[i + 1], b + d[i + 2]];
+      const n = d.length / 4;
+      kraftTint = `rgb(${Math.round(r / n)}, ${Math.round(g / n)}, ${Math.round(b / n)})`;
+    };
+    texture.decode?.().then(measureKraft).catch(() => {});
+
+    let cardAtBottom = false;
+    let themeTrigger = null; // creato più sotto: segna l'inizio della zona crema della scatola
+    const inBoxZone = () => !themeTrigger || window.scrollY >= themeTrigger.start;
     const drawCard = () => {
+      const atBottom = shape.e > 0.6;
+      if (atBottom !== cardAtBottom && inBoxZone()) {
+        cardAtBottom = atBottom;
+        setChromeBottom(atBottom ? kraftTint : CREAM);
+      }
       const r = visibleBox();
       stamp.style.left = `${(r.left + r.right) / 2}px`;
       stamp.style.top = `${(r.top + r.bottom) / 2}px`;
@@ -153,7 +177,7 @@ export function initBoxStage({ reduced }) {
     tl.to({}, { duration: 0.6 });
 
     // Colore della navigazione: chiaro sul forno, scuro da qui in poi
-    ScrollTrigger.create({
+    themeTrigger = ScrollTrigger.create({
       trigger: stage,
       start: 'top 40px',
       onEnter: () => {
@@ -163,6 +187,18 @@ export function initBoxStage({ reduced }) {
       onLeaveBack: () => {
         gsap.to(nav, { color: CREAM, duration: 0.3, overwrite: 'auto' });
         setChrome(NIGHT);
+      },
+    });
+
+    // In fondo: quando arriva il footer crema, la barra in basso torna crema
+    ScrollTrigger.create({
+      trigger: '.footer',
+      start: 'top bottom',
+      onEnter: () => setChromeBottom(CREAM),
+      onLeaveBack: () => {
+        // se si è già risaliti oltre la scatola (forno scuro) non si tocca: ci pensa themeTrigger
+        if (!inBoxZone()) return;
+        setChromeBottom(cardAtBottom ? kraftTint : CREAM);
       },
     });
 
