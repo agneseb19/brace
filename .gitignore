@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.DS_Store
+
+# Original PNG exports (2–3 MB each). The site loads the optimised .webp copies next to them.
+public/img/cartone-texture.png
+public/img/forno.png
+public/img/impasto.png
+public/img/pizza-diavola.png
+public/img/pizza-margherita.png
+public/img/pizza-marinara.png
+public/img/pizza-ortolana.png
+public/img/pizza-quattro-formaggi.png
+public/img/scatola-base.png
+public/img/scatola-coperchio.png
+public/img/campi.png

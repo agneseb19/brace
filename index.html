@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brace — Pizzeria napoletana a Torino</title>
+  <meta name="description" content="Brace, pizzeria napoletana a Torino. Impasto a 72 ore, forno a legna a 485 °C. Consegna, asporto e prenotazioni, martedì–domenica 19:00–23:30." />
+  <meta name="theme-color" content="#efe8dc" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23e5281a'/%3E%3Ctext x='32' y='44' font-family='Arial Black,Arial' font-weight='900' font-size='34' text-anchor='middle' fill='%23efe8dc'%3EB%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+  <a class="skip" href="#menu-list">Vai al menu</a>
+
+  <header class="nav" data-nav>
+    <nav aria-label="Principale">
+      <ul class="nav__links">
+        <li><a href="#menu-list" data-goto="menu">Menu</a></li>
+        <li><a href="#forno" data-goto="oven">Forno</a></li>
+        <li><a href="#ordina" data-goto="card">Consegna</a></li>
+        <li><a href="#ordina" data-goto="card">Prenota</a></li>
+      </ul>
+    </nav>
+    <p class="nav__hours">Mar–Dom, 19:00–23:30</p>
+  </header>
+
+  <main>
+    <!-- ============ STAGE 1: hero → menu → forno → impasto ============ -->
+    <section class="stage story" id="story" aria-label="Le nostre pizze">
+      <div class="story__bg" aria-hidden="true"></div>
+
+      <div class="oven" id="forno" aria-hidden="true">
+        <img class="oven__img" data-img="forno" alt="" />
+        <img class="oven__dough" data-img="impasto" alt="" />
+      </div>
+
+      <div class="title" aria-hidden="true">
+        <span class="word word--brand">Brace</span>
+        <span class="word word--serif">Margherita</span>
+        <span class="word word--serif">Marinara</span>
+        <span class="word word--serif">Diavola</span>
+        <span class="word word--serif">4&nbsp;Formaggi</span>
+        <span class="word word--serif">Ortolana</span>
+      </div>
+      <h1 class="sr-only">Brace, pizzeria napoletana a Torino</h1>
+
+      <!-- Hero -->
+      <p class="hero-copy hero-copy--left">Impasto a 72 ore<br />e fuoco di legna<br />a 485&nbsp;°C.</p>
+      <p class="hero-copy hero-copy--right">Consegna e asporto<br /><a href="mailto:ordini@pizzeriabrace.it">ordini@pizzeriabrace.it</a></p>
+      <div class="hero-cta">
+        <a class="btn" href="#ordina" data-goto="card"><span class="btn__label">Ordina ora</span><span class="btn__icon" aria-hidden="true">→</span></a>
+      </div>
+
+      <!-- Taglio: testi mentre la pizza è a spicchi -->
+      <p class="slice-copy slice-copy--left" aria-hidden="true">Cornicione alto,<br />centro sottile.</p>
+      <p class="slice-copy slice-copy--right" aria-hidden="true">Una napoletana da 33&nbsp;cm, tagliata in otto appena esce dal forno.</p>
+
+      <!-- Menu: schede visibili (decorative) -->
+      <div class="menu-info" aria-hidden="true">
+        <div class="info"><p class="info__count">Pizza 1 di 5</p><p class="info__ing">Pomodoro San Marzano, fior di latte, basilico e olio extravergine.</p></div>
+        <div class="info"><p class="info__count">Pizza 2 di 5</p><p class="info__ing">Pomodoro, aglio, origano di Sicilia e basilico. Niente formaggio.</p></div>
+        <div class="info"><p class="info__count">Pizza 3 di 5</p><p class="info__ing">Pomodoro, fior di latte, salame piccante e peperoncino fresco.</p></div>
+        <div class="info"><p class="info__count">Pizza 4 di 5</p><p class="info__ing">Fior di latte, gorgonzola, fontina e Parmigiano Reggiano 24 mesi.</p></div>
+        <div class="info"><p class="info__count">Pizza 5 di 5</p><p class="info__ing">Pomodoro, fior di latte, zucchine, peperoni e melanzane alla griglia.</p></div>
+      </div>
+      <div class="menu-price" aria-hidden="true">
+        <div class="price"><p class="price__value">€ 8</p><p class="price__meta">33 cm · 8 spicchi</p></div>
+        <div class="price"><p class="price__value">€ 7</p><p class="price__meta">33 cm · 8 spicchi</p></div>
+        <div class="price"><p class="price__value">€ 10</p><p class="price__meta">33 cm · 8 spicchi</p></div>
+        <div class="price"><p class="price__value">€ 11</p><p class="price__meta">33 cm · 8 spicchi</p></div>
+        <div class="price"><p class="price__value">€ 10</p><p class="price__meta">33 cm · 8 spicchi</p></div>
+      </div>
+      <div class="menu-cta">
+        <a class="btn" href="#ordina" data-goto="card" tabindex="-1"><span class="btn__label">Ordina margherita</span><span class="btn__icon" aria-hidden="true">→</span></a>
+        <a class="btn" href="#ordina" data-goto="card" tabindex="-1"><span class="btn__label">Ordina marinara</span><span class="btn__icon" aria-hidden="true">→</span></a>
+        <a class="btn" href="#ordina" data-goto="card" tabindex="-1"><span class="btn__label">Ordina diavola</span><span class="btn__icon" aria-hidden="true">→</span></a>
+        <a class="btn" href="#ordina" data-goto="card" tabindex="-1"><span class="btn__label">Ordina 4 formaggi</span><span class="btn__icon" aria-hidden="true">→</span></a>
+        <a class="btn" href="#ordina" data-goto="card" tabindex="-1"><span class="btn__label">Ordina ortolana</span><span class="btn__icon" aria-hidden="true">→</span></a>
+      </div>
+
+      <!-- Menu accessibile per screen reader -->
+      <div class="sr-only" id="menu-list">
+        <h2>Menu</h2>
+        <ul>
+          <li>Margherita, 8 euro: pomodoro San Marzano, fior di latte, basilico e olio extravergine.</li>
+          <li>Marinara, 7 euro: pomodoro, aglio, origano di Sicilia e basilico.</li>
+          <li>Diavola, 10 euro: pomodoro, fior di latte, salame piccante e peperoncino fresco.</li>
+          <li>4 Formaggi, 11 euro: fior di latte, gorgonzola, fontina e Parmigiano Reggiano.</li>
+          <li>Ortolana, 10 euro: pomodoro, fior di latte, zucchine, peperoni e melanzane alla griglia.</li>
+        </ul>
+      </div>
+
+      <!-- Forno -->
+      <h2 class="oven-copy oven-copy--left">60 secondi<br /><em>a 485&nbsp;°C.</em></h2>
+      <p class="oven-copy oven-copy--right">Fuoco di legna, cupola in mattoni e platea in pietra. Il cornicione si gonfia e si macchia prima che il centro cuocia troppo.</p>
+
+      <!-- Impasto -->
+      <div class="dough-copy">
+        <h2 class="dough-copy__big" aria-label="72 ore"><span class="word word--wide">72h</span></h2>
+        <p class="dough-copy__text">Lievito madre, farina di tipo 1 e 72 ore di maturazione lenta. Per questo è leggera.</p>
+      </div>
+
+      <!-- Pizze -->
+      <div class="pizzas" aria-hidden="true">
+        <div class="pizza pizza--sliced"><div class="pizza__tilt" data-wedges="pizza-margherita"></div></div>
+        <div class="pizza"><div class="pizza__tilt"><img data-img="pizza-marinara" alt="" /></div></div>
+        <div class="pizza"><div class="pizza__tilt"><img data-img="pizza-diavola" alt="" /></div></div>
+        <div class="pizza"><div class="pizza__tilt"><img data-img="pizza-quattro-formaggi" alt="" /></div></div>
+        <div class="pizza"><div class="pizza__tilt"><img data-img="pizza-ortolana" alt="" /></div></div>
+      </div>
+    </section>
+
+    <!-- ============ STAGE 2: scatola → card ordini ============ -->
+    <section class="stage boxstage" id="ordina" aria-labelledby="card-title">
+      <div class="box" aria-hidden="true">
+        <div class="box__lid">
+          <div class="box__face box__face--in" data-bg="cartone-texture"></div>
+          <div class="box__face box__face--out" data-bg="cartone-texture"><span class="box__logo">Brace</span></div>
+        </div>
+        <img class="box__base" data-img="scatola-base" alt="" />
+        <img class="box__pizza" data-img="pizza-margherita" alt="" />
+      </div>
+
+      <div class="card" data-bg="cartone-texture">
+        <span class="card__stamp" aria-hidden="true">Brace</span>
+        <div class="card__head">
+          <p class="card__logo">Brace</p>
+          <h2 class="card__title" id="card-title">Cosa sarà<br />stasera?</h2>
+        </div>
+        <ul class="card__rows">
+          <li class="row">
+            <h3 class="row__name">Consegna</h3>
+            <p class="row__desc">35 minuti o meno, in una scatola che tiene il calore.</p>
+            <a class="row__go" href="mailto:ordini@pizzeriabrace.it?subject=Consegna" aria-label="Ordina a domicilio"><span aria-hidden="true">→</span></a>
+          </li>
+          <li class="row">
+            <h3 class="row__name">Asporto</h3>
+            <p class="row__desc">Pronta in 15 minuti. Passi al bancone e la porti via calda.</p>
+            <a class="row__go" href="mailto:ordini@pizzeriabrace.it?subject=Asporto" aria-label="Ordina da asporto"><span aria-hidden="true">→</span></a>
+          </li>
+          <li class="row">
+            <h3 class="row__name">Prenota</h3>
+            <p class="row__desc">Tavoli da 2 a 8 persone, da martedì a domenica dalle 19:00.</p>
+            <a class="row__go" href="tel:+390110000000" aria-label="Prenota un tavolo al telefono"><span aria-hidden="true">→</span></a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer" id="contatti">
+      <div class="tear" aria-hidden="true" data-tear></div>
+
+      <div class="footer__cta">
+        <h2 class="footer__claim">Tu ordini,<br />noi inforniamo.</h2>
+        <a class="btn" href="#ordina" data-goto="card"><span class="btn__label">Ordina ora</span><span class="btn__icon" aria-hidden="true">→</span></a>
+      </div>
+
+      <dl class="footer__info">
+        <div><dt>Orari</dt><dd>Mar–Dom, 19:00–23:30</dd></div>
+        <div><dt>Indirizzo</dt><dd>Via Santa Giulia 42, 10124 Torino</dd></div>
+        <div><dt>Ordini</dt><dd><a href="mailto:ordini@pizzeriabrace.it">ordini@pizzeriabrace.it</a></dd></div>
+        <div><dt>Seguici</dt><dd><a href="#" rel="noopener">Instagram</a> · <a href="#" rel="noopener">TikTok</a></dd></div>
+      </dl>
+
+      <div class="footer__fields">
+        <img class="footer__img" data-img="campi" alt="Illustrazione incisa di campi di pomodori sulle colline" />
+        <p class="footer__mark" aria-hidden="true"><span class="word word--brand">Brace</span></p>
+      </div>
+
+      <p class="footer__legal">© 2026 Brace — Pizzeria napoletana, Torino. Sito dimostrativo.</p>
+    </footer>
+  </main>
+
+  <div class="grain" aria-hidden="true"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
